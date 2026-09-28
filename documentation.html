@@ -1,0 +1,539 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Kita Malaysia - Project Documentation</title>
+<style>
+  @page {
+    size: A4;
+    margin: 20mm 18mm 20mm 18mm;
+    @bottom-right {
+      content: counter(page);
+    }
+  }
+
+  * {
+    box-sizing: border-box;
+    -webkit-print-color-adjust: exact !important;
+    print-color-adjust: exact !important;
+  }
+
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+    color: #1a202c;
+    line-height: 1.55;
+    font-size: 10pt;
+    margin: 0;
+    padding: 0;
+    background: #ffffff;
+  }
+
+  /* Cover Page */
+  .cover {
+    height: 100%;
+    min-height: 250mm;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding: 30px 10px;
+    page-break-after: always;
+  }
+
+  .cover-header {
+    border-bottom: 2px solid #0f172a;
+    padding-bottom: 15px;
+  }
+
+  .cover-badge {
+    display: inline-block;
+    background: #0f172a;
+    color: #f8fafc;
+    font-size: 8pt;
+    font-weight: 700;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    padding: 4px 10px;
+    border-radius: 4px;
+    margin-bottom: 12px;
+  }
+
+  .cover-title {
+    font-size: 32pt;
+    font-weight: 800;
+    color: #0f172a;
+    line-height: 1.1;
+    margin: 0 0 10px 0;
+    letter-spacing: -0.5px;
+  }
+
+  .cover-title span {
+    color: #c2410c;
+  }
+
+  .cover-tagline {
+    font-size: 14pt;
+    color: #475569;
+    font-weight: 500;
+    margin: 0;
+  }
+
+  .cover-summary-card {
+    background: #f8fafc;
+    border: 1px solid #e2e8f0;
+    border-left: 5px solid #c2410c;
+    border-radius: 8px;
+    padding: 20px 24px;
+    margin: 40px 0;
+  }
+
+  .cover-summary-card h3 {
+    margin-top: 0;
+    font-size: 12pt;
+    color: #0f172a;
+  }
+
+  .cover-summary-card p {
+    color: #334155;
+    font-size: 9.5pt;
+    line-height: 1.6;
+    margin: 0;
+  }
+
+  .cover-meta-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 15px;
+    margin-top: auto;
+    border-top: 1px solid #e2e8f0;
+    padding-top: 20px;
+  }
+
+  .meta-item {
+    font-size: 9pt;
+  }
+
+  .meta-label {
+    color: #64748b;
+    text-transform: uppercase;
+    font-size: 7.5pt;
+    font-weight: 700;
+    letter-spacing: 0.8px;
+    margin-bottom: 2px;
+  }
+
+  .meta-value {
+    color: #0f172a;
+    font-weight: 600;
+  }
+
+  .meta-value a {
+    color: #2563eb;
+    text-decoration: none;
+  }
+
+  /* Content Pages */
+  .page {
+    page-break-after: always;
+    padding-top: 10px;
+  }
+
+  .page:last-child {
+    page-break-after: avoid;
+  }
+
+  h1.section-title {
+    font-size: 18pt;
+    font-weight: 800;
+    color: #0f172a;
+    border-bottom: 2px solid #e2e8f0;
+    padding-bottom: 8px;
+    margin-top: 0;
+    margin-bottom: 16px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  h1.section-title span.sec-num {
+    font-size: 11pt;
+    color: #c2410c;
+    font-weight: 700;
+  }
+
+  h2 {
+    font-size: 12.5pt;
+    font-weight: 700;
+    color: #1e293b;
+    margin-top: 18px;
+    margin-bottom: 8px;
+  }
+
+  h3 {
+    font-size: 10.5pt;
+    font-weight: 600;
+    color: #334155;
+    margin-top: 12px;
+    margin-bottom: 6px;
+  }
+
+  p {
+    margin-top: 0;
+    margin-bottom: 10px;
+    color: #334155;
+    text-align: justify;
+  }
+
+  /* Pillars Grid */
+  .pillars-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+    margin: 14px 0;
+  }
+
+  .pillar-card {
+    background: #f8fafc;
+    border: 1px solid #e2e8f0;
+    border-radius: 6px;
+    padding: 12px 14px;
+  }
+
+  .pillar-card-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 6px;
+  }
+
+  .pillar-name {
+    font-weight: 700;
+    font-size: 10pt;
+    color: #0f172a;
+  }
+
+  .pillar-badge {
+    font-size: 7pt;
+    font-weight: 700;
+    padding: 2px 6px;
+    border-radius: 4px;
+    background: #e2e8f0;
+    color: #475569;
+    text-transform: uppercase;
+  }
+
+  .pillar-desc {
+    font-size: 8.5pt;
+    color: #475569;
+    line-height: 1.45;
+    margin: 0;
+  }
+
+  /* Tech Table */
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 14px 0;
+    font-size: 8.5pt;
+  }
+
+  th, td {
+    border: 1px solid #e2e8f0;
+    padding: 8px 10px;
+    text-align: left;
+  }
+
+  th {
+    background: #f1f5f9;
+    color: #0f172a;
+    font-weight: 700;
+    font-size: 8pt;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+  }
+
+  td.tech-name {
+    font-weight: 600;
+    color: #0f172a;
+  }
+
+  /* Callout */
+  .callout {
+    background: #eff6ff;
+    border-left: 4px solid #2563eb;
+    padding: 10px 14px;
+    border-radius: 4px;
+    margin: 12px 0;
+    font-size: 8.5pt;
+    color: #1e3a8a;
+  }
+
+  .callout strong {
+    color: #1e40af;
+  }
+
+  ul, ol {
+    margin: 0 0 12px 0;
+    padding-left: 20px;
+    color: #334155;
+    font-size: 9pt;
+  }
+
+  li {
+    margin-bottom: 4px;
+  }
+
+  .badge-tag {
+    display: inline-block;
+    background: #fed7aa;
+    color: #9a3412;
+    padding: 1px 6px;
+    border-radius: 3px;
+    font-weight: 600;
+    font-size: 7.5pt;
+    margin-right: 4px;
+  }
+</style>
+</head>
+<body>
+
+<!-- Cover Page -->
+<div class="cover">
+  <div class="cover-header">
+    <div class="cover-badge">Merdeka WebForge 2026 Submission</div>
+    <h1 class="cover-title">Kita <span>Malaysia</span></h1>
+    <p class="cover-tagline">An Interactive 3D Malaysian Cultural & Heritage Explorer</p>
+  </div>
+
+  <div class="cover-summary-card">
+    <h3>Project Executive Summary</h3>
+    <p>
+      <strong>Kita Malaysia</strong> is a modern, high-performance web experience crafted to celebrate Malaysia's rich tapestry of cultures, heritage, and national unity. Built with Next.js 16, React 19, TypeScript, and Three.js, it unites Peninsular Malaysia and Malaysian Borneo through an interactive 3D miniature landscape, authentic cultural stories, an educational trivia quiz, and a gamified explorer passport. The application emphasizes accessibility, digital sovereignty (zero backend/API dependence), and deep reverence for Malaysia's living heritage.
+    </p>
+  </div>
+
+  <div class="cover-meta-grid">
+    <div class="meta-item">
+      <div class="meta-label">Developer</div>
+      <div class="meta-value">Haziq Farhan (hzqfarhan)</div>
+    </div>
+    <div class="meta-item">
+      <div class="meta-label">Competition Track</div>
+      <div class="meta-value">Web Application / Cultural Heritage</div>
+    </div>
+    <div class="meta-item">
+      <div class="meta-label">GitHub Repository</div>
+      <div class="meta-value"><a href="https://github.com/hzqfarhan/kitamalaysia">github.com/hzqfarhan/kitamalaysia</a></div>
+    </div>
+    <div class="meta-item">
+      <div class="meta-label">Submission Date</div>
+      <div class="meta-value">September 2026</div>
+    </div>
+  </div>
+</div>
+
+<!-- Page 1: Concept & Merdeka Theme -->
+<div class="page">
+  <h1 class="section-title">
+    <span>01. Merdeka Theme & National Concept</span>
+    <span class="sec-num">"Made of Many. Moving as One."</span>
+  </h1>
+
+  <h2>The Vision: Independence Through Mutual Respect & Unity</h2>
+  <p>
+    Independence (<em>Merdeka</em>) is more than a historical milestone achieved on August 31, 1957; it is a living commitment to mutual harmony, mutual understanding, and collective resilience. True national identity is forged not by erasing differences, but by celebrating how our diverse traditions, geography, and communities strengthen one another.
+  </p>
+  <p>
+    <strong>Kita Malaysia</strong> embodies this ethos by bringing Malaysian history and living traditions to the fingertips of the youth. Rather than presenting static textbook paragraphs, the website translates national heritage into an explorative, interactive spatial canvas.
+  </p>
+
+  <h2>Six Cultural Pillars Across East & West Malaysia</h2>
+  <div class="pillars-grid">
+    <div class="pillar-card">
+      <div class="pillar-card-header">
+        <span class="pillar-name">1. Kuala Lumpur</span>
+        <span class="pillar-badge">Innovation</span>
+      </div>
+      <p class="pillar-desc">
+        <strong>Rooted in culture, reaching for the sky.</strong> Showcases the PETRONAS Twin Towers, highlighting how modern architecture is grounded in Islamic geometric design (the eight-pointed star).
+      </p>
+    </div>
+    <div class="pillar-card">
+      <div class="pillar-card-header">
+        <span class="pillar-name">2. George Town (Penang)</span>
+        <span class="pillar-badge">UNESCO Heritage</span>
+      </div>
+      <p class="pillar-desc">
+        <strong>Streets of living exchange.</strong> Celebrates centuries of multicultural harmony, historic shophouses, and shared community spaces of the Straits of Malacca.
+      </p>
+    </div>
+    <div class="pillar-card">
+      <div class="pillar-card-header">
+        <span class="pillar-name">3. Melaka</span>
+        <span class="pillar-badge">Living Heritage</span>
+      </div>
+      <p class="pillar-desc">
+        <strong>The historic maritime crossroads.</strong> Traces the historical meeting of Malay, Portuguese, Dutch, and Peranakan cultures that laid the foundation of Malaysian pluralism.
+      </p>
+    </div>
+    <div class="pillar-card">
+      <div class="pillar-card-header">
+        <span class="pillar-name">4. Kelantan</span>
+        <span class="pillar-badge">Art & Craft</span>
+      </div>
+      <p class="pillar-desc">
+        <strong>Craftsmanship taking flight.</strong> Spotlights the traditional <em>Wau Bulan</em> kite, symbolizing patience, craftsmanship, and soaring national ambition.
+      </p>
+    </div>
+    <div class="pillar-card">
+      <div class="pillar-card-header">
+        <span class="pillar-name">5. Mount Kinabalu (Sabah)</span>
+        <span class="pillar-badge">Nature & Ecology</span>
+      </div>
+      <p class="pillar-desc">
+        <strong>A sacred ecosystem.</strong> Highlights Sabah's UNESCO World Heritage national park, its sacred cultural reverence by indigenous communities, and remarkable biodiversity.
+      </p>
+    </div>
+    <div class="pillar-card">
+      <div class="pillar-card-header">
+        <span class="pillar-name">6. Sarawak</span>
+        <span class="pillar-badge">Community Unity</span>
+      </div>
+      <p class="pillar-desc">
+        <strong>"Different doors. A shared space."</strong> Explores the philosophy of the indigenous longhouse — a profound architectural metaphor for national unity and harmony.
+      </p>
+    </div>
+  </div>
+
+  <div class="callout">
+    <strong>Educational Authenticity:</strong> All stories, historical milestones, and cultural facts are cross-referenced with accredited sources including the <em>UNESCO World Heritage Centre</em>, <em>Tourism Malaysia</em>, and the <em>Sarawak Tourism Board</em>.
+  </div>
+</div>
+
+<!-- Page 2: Features & Architecture -->
+<div class="page">
+  <h1 class="section-title">
+    <span>02. Technical Architecture & Innovation</span>
+    <span class="sec-num">Next.js 16 + Three.js</span>
+  </h1>
+
+  <h2>Core Technical Features</h2>
+  <ul>
+    <li>
+      <strong>Interactive Three.js 3D Miniature Landscape:</strong> A low-poly illustrative 3D canvas featuring procedural terrain, customizable orbital camera controls (drag-to-orbit, scroll-to-zoom, auto-reset), animated cloud layers, and a flying <em>Wau Bulan</em> kite rendered in real-time WebGL.
+    </li>
+    <li>
+      <strong>Interactive Landmark Raycasting:</strong> Users interact with custom 3D pins representing historical regions, triggering synchronized story dialogs and geographic focus.
+    </li>
+    <li>
+      <strong>Gamified Explorer Passport:</strong> Six digital collectible passport stamps earned as visitors explore each state's story. Progress and high scores are preserved across browser sessions via <code>localStorage</code> with zero account barrier.
+    </li>
+    <li>
+      <strong>Malaysia Trivia Quiz Engine:</strong> A 5-question trivia experience testing insights gained across the explorer, featuring explanatory feedback and persistent high score tracking.
+    </li>
+    <li>
+      <strong>Accessibility First Design:</strong> Built-in skip links, native accessible dialogs (<code>&lt;dialog&gt;</code>), high-contrast typography, and <code>prefers-reduced-motion</code> overrides.
+    </li>
+  </ul>
+
+  <h2>Technology Stack Breakdown</h2>
+  <table>
+    <thead>
+      <tr>
+        <th>Layer</th>
+        <th>Technology</th>
+        <th>Purpose & Justification</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td class="tech-name">Core Framework</td>
+        <td>Next.js 16 (React 19)</td>
+        <td>App Router with <code>output: 'export'</code> static generation for ultra-fast, edge-ready delivery.</td>
+      </tr>
+      <tr>
+        <td class="tech-name">Type Safety</td>
+        <td>TypeScript 5.9</td>
+        <td>Strict typing across destination models, quiz structures, and WebGL state machines.</td>
+      </tr>
+      <tr>
+        <td class="tech-name">3D WebGL Engine</td>
+        <td>Three.js 0.186</td>
+        <td>Lightweight custom 3D geometry without heavy external 3D asset loaders, ensuring sub-second initial loads.</td>
+      </tr>
+      <tr>
+        <td class="tech-name">Iconography</td>
+        <td>Lucide React</td>
+        <td>Clean, accessible, tree-shaken SVG icon system.</td>
+      </tr>
+      <tr>
+        <td class="tech-name">Styling System</td>
+        <td>Modern CSS3 Variables</td>
+        <td>Glassmorphism, fluid typography, dark-accented cultural palettes, and responsive layouts.</td>
+      </tr>
+      <tr>
+        <td class="tech-name">Data Storage</td>
+        <td>Client LocalStorage</td>
+        <td>Zero tracking, zero cookies, privacy-preserving client-side passport & score persistence.</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <h2>Performance & Production Optimization</h2>
+  <p>
+    The entire application compiles to a purely static bundle in <code>out/</code>. By utilizing procedural Three.js geometries for the landscape and optimizing photography, the application achieves lightning-fast first contentful paint (FCP), zero server-side latency, and 100% offline-ready reliability.
+  </p>
+</div>
+
+<!-- Page 3: Impact & Conclusion -->
+<div class="page">
+  <h1 class="section-title">
+    <span>03. Educational Impact & Submission Summary</span>
+    <span class="sec-num">Evaluation Criteria</span>
+  </h1>
+
+  <h2>Alignment With Competition Criteria</h2>
+  <table>
+    <thead>
+      <tr>
+        <th>Criterion</th>
+        <th>Implementation in Kita Malaysia</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td class="tech-name">Creativity & Design</td>
+        <td>Playful, modern 3D low-poly miniature aesthetic. Blends cutting-edge WebGL graphics with warm Malaysian cultural motifs and glassmorphism.</td>
+      </tr>
+      <tr>
+        <td class="tech-name">Merdeka & Culture Theme</td>
+        <td>Deep narrative integration of unity, cultural craftsmanship (Wau Bulan), architectural symbolism (Petronas Towers), and communal coexistence (Sarawak longhouses).</td>
+      </tr>
+      <tr>
+        <td class="tech-name">Technical Execution</td>
+        <td>Flawless TypeScript compilation, Next.js 16 static export, real-time 3D camera controls, and accessible dialogs.</td>
+      </tr>
+      <tr>
+        <td class="tech-name">User Engagement</td>
+        <td>Gamified Explorer Passport and Malaysia Trivia Quiz turn passive reading into an active, delightful discovery experience.</td>
+      </tr>
+      <tr>
+        <td class="tech-name">Digital Ethics & Privacy</td>
+        <td>Requires no logins, no personal data harvesting, and fully transparent open-source attributions and licensing.</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <h2>Project Deliverables & Repository Access</h2>
+  <div class="pillar-card" style="margin-top: 15px;">
+    <p style="margin: 0 0 6px 0;"><strong>Source Code Repository:</strong> <a href="https://github.com/hzqfarhan/kitamalaysia">https://github.com/hzqfarhan/kitamalaysia</a></p>
+    <p style="margin: 0 0 6px 0;"><strong>Branch:</strong> <code>main</code> (Clean history, production-ready)</p>
+    <p style="margin: 0;"><strong>License & Rights:</strong> MIT Open Source / Educational Use</p>
+  </div>
+
+  <p style="margin-top: 25px; text-align: center; color: #64748b; font-size: 8.5pt;">
+    <em>"Made of many. Moving as one. Code. Create. Celebrate Malaysia." — Merdeka WebForge 2026</em>
+  </p>
+</div>
+
+</body>
+</html>
